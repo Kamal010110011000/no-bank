@@ -1,42 +1,36 @@
 package com.nobank.userservice.service;
 
-import com.nobank.userservice.model.Product;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.hateoas.CollectionModel;
-import org.springframework.http.HttpMethod;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.stream.Collectors;
+import com.nobank.userservice.model.Product;
 
 @Service
 public class ProductServices {
 	
-	private final String localURL="http://localhost:8200";
+	private final String localURL="http://product-service";
 	private final String webURL="";
+	
 
 
-    public Collection<Product> getProducts(){
+    public List<Product> getProducts(){
 
-        ParameterizedTypeReference<CollectionModel<Product>> ptr =
-                new ParameterizedTypeReference<CollectionModel<Product>>() {};
+        ResponseEntity<Product[]> responseEntity = new RestTemplate()
+                .getForEntity("http://localhost:8200/products/", Product[].class);
 
+            List<Product> list = Arrays.asList(responseEntity.getBody());
+            
+            return list;
 
-
-        ResponseEntity<CollectionModel<Product>> responseEntity = new RestTemplate()
-                .exchange(localURL+"/products", HttpMethod.GET, null, ptr);
-
-        if(responseEntity.getStatusCodeValue()==200)
-            return responseEntity.getBody().getContent()
-                    .stream()
-                    .collect(Collectors.toList());
-
-        return null;
     }
+
 
     public Product getProduct(String productId){
 
@@ -45,11 +39,9 @@ public class ProductServices {
         pathVarmap.put("productId", productId);
 
         ResponseEntity<Product> responseEntity = new RestTemplate()
-                .getForEntity(localURL+"/products/{productId}", Product.class, pathVarmap);
+                .getForEntity("http://localhost:8200/products/{productId}", Product.class, pathVarmap);
 
-        if(responseEntity.getStatusCodeValue() == 200)
             return responseEntity.getBody();
-        return null;
     }
 
     public Product createProduct(String userId, Product product){

@@ -103,15 +103,10 @@ public class DBinit implements CommandLineRunner {
         
         user3.setHistory(h);
         userRepository.save(user3);
+        
         System.out.println(user2.toString());
         System.out.println(user1.toString());
         System.out.println(user3.toString());
         
-        List<Product> products = (List<Product>) productServices.getProducts();
-        
-        System.out.println(products.size());
-        for(Product b : products) {
-        	System.out.println(b.toString());
-        }
     }
 }

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments/dashboard-fragments :: link">
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+
+<div class="wrapper ">
+  	<div th:replace="fragments/elements :: sidebar (name= ${user.name} , cls = 'DASHBOARD')">
+  	</div>
+    <div class="main-panel" style="height: 100vh;">
+      <!-- Navbar -->
+      <div th:replace="fragments/elements :: navigation (name = ${user.name})"></div>
+      <!-- End Navbar -->
+        <div class="content">
+        	
+           
+      </div>
+    <!--  Footer-->
+      <div th:replace="fragments/elements :: footer"></div>
+    </div>
+  </div>
+
+<div th:replace="fragments/dashboard-fragments :: script"></div>
+
+</body>
+</html>

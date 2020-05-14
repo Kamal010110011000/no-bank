@@ -29,7 +29,7 @@ public class ShopController {
     	
     	String user = principal.getName();
     	
-    	List<Product> products = (List<Product>) productServices.getProducts();
+    	List<Product> products =productServices.getProducts();
     	Map<String, Object> map = new HashMap<>();
     	
     	map.put("name", userServices.getUserByEmail(user).getName());
@@ -37,11 +37,12 @@ public class ShopController {
     	map.put("MODE", "shop");
     	model.addAllAttributes(map);
     	return "shop";
-    }
+    } 
 
     @GetMapping("/shop/{productId}")
     public String getProduct(@PathVariable String productId, Model model){
-        return "shop";
+    	
+        return "shop-item";
     }
 
 }

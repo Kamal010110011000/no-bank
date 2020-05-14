@@ -14,17 +14,19 @@ public class Product {
     private String name;
     private String imageUrl;
     private List<Holder> holders;
+    private  String discription;
     private int total;
     private int available;
 
     public Product(){}
 
-    public Product(String name, String imageUrl, List<Holder> holders, int total, int available) {
+    public Product(String name, String imageUrl, List<Holder> holders, int total, int available, String discription) {
         this.name = name;
         this.imageUrl = imageUrl;
         this.holders = holders;
         this.total = total;
         this.available = available;
+        this.discription = discription;
     }
 
     public String getId() {
@@ -74,4 +76,14 @@ public class Product {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
+
+	public String getDiscription() {
+		return discription;
+	}
+
+	public void setDiscription(String discription) {
+		this.discription = discription;
+	}
+    
+    
 }

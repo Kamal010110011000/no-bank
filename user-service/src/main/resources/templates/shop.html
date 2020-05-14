@@ -11,33 +11,35 @@
   	</div>
     <div class="main-panel" style="height: 100vh;">
       <!-- Navbar -->
-      <div th:replace="fragments/elements :: navigation (name = ${name})"></div>
+      <div th:replace="fragments/elements :: navigation (name = ${name} )"></div>
       <!-- End Navbar -->
         <div class="content">
-	        <div class="row" th:each="product : ${products}">
-	          <div class="col-lg-6 col-md-12 col-sm-12">
+	        <div class="row" >
+	          <div class="col-lg-6 col-md-12 col-sm-12" th:each=" product : ${products}">
 	            <div class="card card-stats">
 	              <div class="card-body ">
 	                <div class="row">
 	                  <div class="col-5 col-md-4">
 	                    <div class="icon-big text-center icon-warning">
-	                      <img src="" alt="">
+	                      <img src="https://www.searchpng.com/wp-content/uploads/2019/03/Swiggy-PNG-Logo-715x715.png" alt="">
 	                    </div>
 	                  </div>
 	                  <div class="col-7 col-md-8">
 	                    <div class="numbers">
-	                      <p class="card-category" th:text="${product.name}"></p>
-	                      <p class="card-title"><p>
+	                      <p class="card-title" th:text="${product.name}"></p>
+	                      <p class="card-category" th:text="${product.discription}"><p>
 	                    </div>
 	                  </div>
 	                </div>
 	              </div>
 	              <div class="card-footer ">
 	                <hr>
+	                <a th:href="@{/shop/{id} ( id = ${product.id})}">
 	                <div class="stats">
-	                  <i class="fa fa-refresh"></i>
-	                  Update Now
+	                 <i class="fa fa-send"></i>
+	                 Open
 	                </div>
+	                </a>
 	              </div>
 	            </div>
 	          </div>
