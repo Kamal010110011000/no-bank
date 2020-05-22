@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments/dashboard-fragments :: link">
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+	<div class="wrapper ">
+  	<div th:replace="fragments/elements :: sidebar (name= ${name} , cls = 'shop')">
+  	</div>
+    <div class="main-panel" style="height: 100vh;">
+      <!-- Navbar -->
+      <div th:replace="fragments/elements :: navigation (name = ${name})"></div>
+      <!-- End Navbar -->
+        <div class="content">
+        <!--	<div th:replace="fragments/user :: user-details (user = ${user})"></div>  -->
+        	<div class="row">
+        	<div class="col-md-12">
+            <div class="card card-user">
+              <div class="card-header">
+                <h3 class="card-title" th:text="${product.name}"></h3>
+              </div>
+                <div class="card-body">
+                <div class="col-lg-6 col-md-12">
+                	<div class="col-lg-6 col-md-12">
+                		<img src="https://www.searchpng.com/wp-content/uploads/2019/03/Swiggy-PNG-Logo-715x715.png">
+                	</div>
+                	<div class="col-lg-6 col-md-12">
+                		<h5>Description</h5>
+                		<p th:text="${product.discription}"></p>
+                	</div>
+                </div>
+                
+                <form th:action="@{/buy}" method="post">
+                	
+                	<input type="hidden" name="productid" th:value="${product.id}">
+            	<button type="submit" class="btn btn-primary btn-round">Buy</button>	
+                </form>
+              </div>
+            </div>
+          </div>
+         </div>
+      </div>
+    <!--  Footer-->
+      <div th:replace="fragments/elements :: footer"></div>
+    </div>
+  </div>
+
+	<div th:replace="fragments/dashboard-fragments :: script"></div>
+</body>
+</html>

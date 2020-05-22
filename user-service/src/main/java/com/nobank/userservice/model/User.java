@@ -1,5 +1,6 @@
 package com.nobank.userservice.model;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
@@ -37,11 +38,11 @@ public class User {
 
     private	List<String> forSale;
     private List<String> products;
-    private List<History> history;
+    private LinkedList<History> history;
  
     public User(String name, String email, List<String> products,List<String> forSale,
                 long aadhar_no, long phone, Address address, String imageUrl, String password,
-                Account account, List<History> history, List<String> roles,List<String> permissions) {
+                Account account, LinkedList<History> history, List<String> roles,List<String> permissions) {
         this.name = name;
         this.email = email;
         this.password = password;
@@ -131,11 +132,11 @@ public class User {
         this.account = account;
     }
 
-    public List<History> getHistory() {
+    public LinkedList<History> getHistory() {
         return history;
     }
 
-    public void setHistory(List<History> history) {
+    public void setHistory(LinkedList<History> history) {
         this.history = history;
     }
 

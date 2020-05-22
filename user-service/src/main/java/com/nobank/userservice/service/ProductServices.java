@@ -10,16 +10,20 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.nobank.userservice.model.Product;
 
 @Service
 public class ProductServices {
 	
-	private final String localURL="http://product-service";
-	private final String webURL="";
+	private final String webURL="https://product-service0.herokuapp.com/";
 	
+	
+	public List<Product> getProductsFallback(){
+		return new ArrayList<>();
+	}
 
-
+	@HystrixCommand(fallbackMethod = "getProductsFallback")
     public List<Product> getProducts(){
 
         ResponseEntity<Product[]> responseEntity = new RestTemplate()
@@ -39,7 +43,7 @@ public class ProductServices {
         pathVarmap.put("productId", productId);
 
         ResponseEntity<Product> responseEntity = new RestTemplate()
-                .getForEntity("http://localhost:8200/products/{productId}", Product.class, pathVarmap);
+                .getForEntity(webURL+"products/{productId}", Product.class, pathVarmap);
 
             return responseEntity.getBody();
     }

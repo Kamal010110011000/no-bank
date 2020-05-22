@@ -18,7 +18,7 @@ public class BillController {
         return billingServices.getBill(productId, userId);
     }
 
-    @PostMapping(value = "/fee")
+    @PostMapping(value = "/")
     public Bill createBill(@RequestBody Bill bill){
         return billingServices.postBill(bill);
     }

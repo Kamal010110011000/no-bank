@@ -21,6 +21,7 @@ import com.nobank.productservice.model.Bill;
 import com.nobank.productservice.model.Data;
 import com.nobank.productservice.model.Holder;
 import com.nobank.productservice.model.Product;
+import com.nobank.productservice.service.BillServices;
 import com.nobank.productservice.service.ProductService;
 
 @RestController
@@ -29,26 +30,25 @@ public class ProductController {
 
     @Autowired
     private ProductService productService;
+    
+    @Autowired
+    private BillServices billServices;
 
 
     @PostMapping(value = "/")
-    public ResponseEntity<Data> createProduct(@RequestBody Data data, @RequestHeader Map<String , String> header){
+    public Data createProduct(@RequestBody Data data, @RequestHeader Map<String , String> header){
 
-        Bill bill = new Bill();
+        Bill bill = data.getBill();
 
         Product product = productService.createProduct(data.getProduct());
         bill.setProductId(product.getId());
-
-        ResponseEntity<Bill> responseEntity= new RestTemplate()
-                .postForEntity("http://localhost:8500/fee", bill, Bill.class);
-        Data data1 = new Data();
+        
+        Data data1=new Data();
+        
+        data1.setBill(billServices.postBill(bill));
         data1.setProduct(product);
-        data1.setBill(bill);
-
-        //TODO: get userid from auth
-        //bill.setUserId();
-
-        return new ResponseEntity<Data>(HttpStatus.CREATED);
+        
+        return data1;
 
     }
 

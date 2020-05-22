@@ -8,19 +8,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 
+import com.nobank.productservice.model.Bill;
+import com.nobank.productservice.model.Data;
 import com.nobank.productservice.model.Holder;
 import com.nobank.productservice.model.Product;
+import com.nobank.productservice.service.ProductService;
 
 @Service
 public class DBinit implements CommandLineRunner{
 	
 	@Autowired
-	private ProductRepository productRepository;
+	private ProductService productService;
 
 	@Override
 	public void run(String... args) throws Exception {
-		
-		productRepository.deleteAll();
 		
 		List<Holder> holders = new ArrayList<>();
 		
@@ -31,9 +32,17 @@ public class DBinit implements CommandLineRunner{
 		Product product5 = new Product("Ola", "no-image",holders, 4300, 400,"SOME DISCRIPTION");
 		Product product6 = new Product("Oyo", "no-image",holders, 7800, 400,"SOME DISCRIPTION");
 		
-		List<Product> products = Arrays.asList(product1,product2,product3, product4, product5, product6);
+		Data data1=new Data(product1, new Bill("1234",100 , 120 , 15));
+		Data data2=new Data(product2, new Bill("1234",100 , 120 , 15));
+		Data data3=new Data(product3, new Bill("1234",100 , 120 , 15));
+		Data data4=new Data(product4, new Bill("1234",100 , 120 , 15));
+		Data data5=new Data(product5, new Bill("1234",100 , 120 , 15));
+		Data data6=new Data(product6, new Bill("1234",100 , 120 , 15));
 		
-		productRepository.saveAll(products);
+		List<Data> data = Arrays.asList(data1,data2,data3,data4,data5,data6);
+		
+		
+		
 	}
 
 }

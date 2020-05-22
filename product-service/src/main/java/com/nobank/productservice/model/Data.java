@@ -7,7 +7,7 @@ public class Data {
 
     public Data(){}
 
-    public Data(Bill bill, Product product) {
+    public Data(Product product, Bill bill) {
         this.bill = bill;
         this.product = product;
     }

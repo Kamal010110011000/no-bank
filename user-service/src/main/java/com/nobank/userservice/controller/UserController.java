@@ -71,6 +71,8 @@ public class UserController {
     	model.addAttribute("success_message", "Account Created Successfully!");
     	return "register";
     }
+    
+    
 
 
 }

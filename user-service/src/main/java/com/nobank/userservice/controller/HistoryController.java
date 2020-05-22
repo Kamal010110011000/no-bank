@@ -32,5 +32,7 @@ public class HistoryController {
 		
 		return "history";
 	}
+	
+	
 
 }

@@ -34,15 +34,26 @@ public class ShopController {
     	
     	map.put("name", userServices.getUserByEmail(user).getName());
     	map.put("products", products);
+    	map.put("len", products.size());
     	map.put("MODE", "shop");
     	model.addAllAttributes(map);
     	return "shop";
     } 
 
     @GetMapping("/shop/{productId}")
-    public String getProduct(@PathVariable String productId, Model model){
+    public String getProduct(@PathVariable String productId, Model model, Principal principal){
+    	String username = principal.getName();
     	
+    	Product product = productServices.getProduct(productId);
+    	Map<String, Object> map = new HashMap<>();
+    	
+    	map.put("name", userServices.getUserByEmail(username).getName());
+    	map.put("product", product);
+    	map.put("MODE" , "shop");
+    	model.addAllAttributes(map);
+
         return "shop-item";
     }
 
+    
 }

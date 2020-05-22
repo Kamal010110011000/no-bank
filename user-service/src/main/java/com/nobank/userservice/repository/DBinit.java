@@ -1,8 +1,8 @@
 package com.nobank.userservice.repository;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import com.nobank.userservice.model.Account;
 import com.nobank.userservice.model.Address;
 import com.nobank.userservice.model.History;
-import com.nobank.userservice.model.Product;
 import com.nobank.userservice.model.User;
 import com.nobank.userservice.service.ProductServices;
 
@@ -31,8 +30,8 @@ public class DBinit implements CommandLineRunner {
 
         userRepository.deleteAll();
 
-        List<String> p = new ArrayList<>();
-        List<History> h =new ArrayList<>(); 
+        List<String> p = new LinkedList<>();
+        LinkedList<History> h =new LinkedList<>(); 
 
         List<String> roles = new ArrayList<>();
         roles.add("user");
@@ -103,6 +102,8 @@ public class DBinit implements CommandLineRunner {
         
         user3.setHistory(h);
         userRepository.save(user3);
+        
+
         
         System.out.println(user2.toString());
         System.out.println(user1.toString());

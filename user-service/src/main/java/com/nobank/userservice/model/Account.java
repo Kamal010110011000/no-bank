@@ -6,7 +6,7 @@ public class Account {
         Saving, Current
     }
 
-    private long ac_no;
+    private long acNo;
 
     private double balance;
 
@@ -15,17 +15,17 @@ public class Account {
     public Account(){}
 
     public Account(Type type,double balance) {
-        this.ac_no = System.currentTimeMillis();
+        this.acNo = System.currentTimeMillis();
         this.type = type;
         this.balance = balance;
     }
 
-    public long getAc_no() {
-        return ac_no;
+    public long getAcNo() {
+        return acNo;
     }
 
-    public void setAc_no(long ac_no) {
-        this.ac_no = ac_no;
+    public void setAcNo(long ac_no) {
+        this.acNo = ac_no;
     }
 
     public Type getType() {
@@ -46,7 +46,7 @@ public class Account {
 
 	@Override
 	public String toString() {
-		return "Account [ac_no=" + ac_no + ", balance=" + balance + ", type=" + type + "]";
+		return "Account [ac_no=" + acNo + ", balance=" + balance + ", type=" + type + "]";
 	}
     
     

@@ -14,7 +14,54 @@
       <div th:replace="fragments/elements :: navigation (name = ${user.name})"></div>
       <!-- End Navbar -->
         <div class="content">
+        	<div th:replace="fragments/user :: user-details (user = ${user})"></div>
         	
+        	<div class="col-md-12">
+            <div class="card card-user">
+              <div class="card-header">
+                <h5 class="card-title">Transfer Money</h5>
+              </div>
+                <div class="card-body">
+                <form th:action="@{/transfer-money}" method="post">
+                  <div class="row">
+                    <div class="col-md-6 pr-1">
+                      <div class="form-group">
+                        <label>Send Through</label>
+                        <select class="form-control" name="use">
+                        	<option>Email</option>
+                        	<option>Account No</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 pr-1">
+                      <div class="form-group">
+                        <label>Credential</label>
+                        <input type="text" class="form-control" placeholder="Credential" name="to">
+                      </div>
+                    </div>
+                    <div class="col-md-6 pl-1">
+                      <div class="form-group">
+                        <label>Amount</label>
+                        <input type="number" class="form-control" placeholder="Amount" name="amount">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="update ml-auto mr-auto">
+                      <p th:text="${msg}"></p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="update ml-auto mr-auto">
+                      <button type="submit" class="btn btn-primary btn-round"><span>Send</span></button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
            
       </div>
     <!--  Footer-->
@@ -23,6 +70,11 @@
   </div>
 
 <div th:replace="fragments/dashboard-fragments :: script"></div>
+
+<script>
+
+
+</script>
 
 </body>
 </html>

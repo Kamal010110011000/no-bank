@@ -10,9 +10,8 @@ public class Bill {
     public Bill() {
     }
 
-    public Bill(String userId, String productId, double face_value, double market_value, double dividend) {
+    public Bill(String userId, double face_value, double market_value, double dividend) {
         this.userId = userId;
-        this.productId = productId;
         this.face_value = face_value;
         this.market_value = market_value;
         this.dividend = dividend;
