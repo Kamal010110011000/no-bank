@@ -15,9 +15,14 @@ public class BillServices {
 	public Bill postBill(Bill bill) {
 		
 		ResponseEntity<Bill> entity = new RestTemplate()
-				.postForEntity(bill_url+"/fee", bill, Bill.class);
+				.postForEntity(bill_url+"/fee/", bill, Bill.class);
 		
 		return entity.getBody();
+	}
+	
+	public void deleteAll() {
+		 new RestTemplate()
+				.delete(bill_url+"/fee/");
 	}
 	
 	

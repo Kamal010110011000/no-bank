@@ -35,7 +35,7 @@ public class UserPrincipal implements UserDetails {
     }
 
     @Override
-    public String getPassword() {
+    public String getPassword() throws NullPointerException {
         return this.user.getPassword();
     }
 

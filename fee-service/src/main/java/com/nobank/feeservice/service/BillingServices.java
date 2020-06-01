@@ -1,9 +1,12 @@
 package com.nobank.feeservice.service;
 
-import com.nobank.feeservice.model.Bill;
-import com.nobank.feeservice.repository.BillRepository;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.nobank.feeservice.model.Bill;
+import com.nobank.feeservice.repository.BillRepository;
 
 @Service
 public class BillingServices {
@@ -15,6 +18,14 @@ public class BillingServices {
 
         return billRepository.findByProductIdAndUserId(productId, userId);
 
+    }
+    
+    public List<Bill> allBills(){
+    	return billRepository.findAll();
+    }
+    
+    public List<Bill> bills(String productId){
+    	return billRepository.findByProductIdAndStatus(productId,true);
     }
 
     public Bill postBill(Bill bill){
@@ -29,5 +40,9 @@ public class BillingServices {
         bill.setMarket_value(newBill.getMarket_value());
 
         return billRepository.save(bill);
+    }
+    
+    public void deleteAll() {
+    	billRepository.deleteAll();
     }
 }

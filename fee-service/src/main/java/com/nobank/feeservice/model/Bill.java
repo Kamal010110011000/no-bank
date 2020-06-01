@@ -13,16 +13,18 @@ public class Bill {
     private double face_value;
     private double market_value;
     private double dividend;
+    private boolean status = true;
 
     public Bill(){}
 
-    public Bill(String id, String userId, String productId, double face_value, double market_value, double dividend) {
+    public Bill(String id, String userId, String productId, double face_value, double market_value, double dividend, boolean status) {
         this.id = id;
         this.userId = userId;
         this.productId = productId;
         this.face_value = face_value;
         this.market_value = market_value;
         this.dividend = dividend;
+        this.status = status;
     }
 
     public String getId() {
@@ -64,4 +66,24 @@ public class Bill {
     public void setDividend(double dividend) {
         this.dividend = dividend;
     }
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+	
+	
+    
+    
 }

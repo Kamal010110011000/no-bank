@@ -38,6 +38,16 @@
 	                    </div>
 	                  </div>
 	                  <div class="row">
+	                  	<div class="col-md-12 pm-1">
+	                  		<div th:if="${param.error}" class="alert alert-danger">
+                            	Invalid username or password.
+                        	</div>
+                        	<div th:if="${param.logout}" class="alert alert-success">
+                            	You have been logged out.
+                        	</div>
+                        </div>
+	                  </div>
+	                  <div class="row">
 	                    <div class="update ml-auto mr-auto">
 	                      <button type="submit" class="btn btn-primary btn-round">Login</button>
 	                    </div>

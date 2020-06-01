@@ -30,25 +30,14 @@ public class ProductController {
 
     @Autowired
     private ProductService productService;
-    
-    @Autowired
-    private BillServices billServices;
 
 
     @PostMapping(value = "/")
-    public Data createProduct(@RequestBody Data data, @RequestHeader Map<String , String> header){
+    public void createProduct(@RequestBody Data data, @RequestHeader Map<String , String> header){
 
         Bill bill = data.getBill();
-
-        Product product = productService.createProduct(data.getProduct());
-        bill.setProductId(product.getId());
-        
-        Data data1=new Data();
-        
-        data1.setBill(billServices.postBill(bill));
-        data1.setProduct(product);
-        
-        return data1;
+        Product prod = data.getProduct();
+        productService.createProduct(prod,bill);
 
     }
 

@@ -10,7 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import com.nobank.userservice.model.Bill;
 import com.nobank.userservice.model.Product;
 import com.nobank.userservice.service.ProductServices;
 import com.nobank.userservice.service.UserServices;
@@ -45,14 +47,23 @@ public class ShopController {
     	String username = principal.getName();
     	
     	Product product = productServices.getProduct(productId);
+    	List<Bill> bills = productServices.getBill(productId);
     	Map<String, Object> map = new HashMap<>();
     	
     	map.put("name", userServices.getUserByEmail(username).getName());
     	map.put("product", product);
     	map.put("MODE" , "shop");
+    	map.put("bills", bills);
+    	map.put("size", bills.size());
     	model.addAllAttributes(map);
 
         return "shop-item";
+    }
+    
+    @PostMapping("/buy")
+    public String buyProd() {
+    	
+    	return "shop-item";
     }
 
     

@@ -39,9 +39,9 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
                 http.cors().and()
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/login*","/register*","/products*").permitAll()
-                .antMatchers("/*").hasRole("user")
-                        .antMatchers(HttpMethod.POST,"/users").authenticated()
+                .antMatchers("/login*","/login/error","/register*","/products*").permitAll()
+                .antMatchers("/*","/logout*").hasRole("user")
+                .antMatchers(HttpMethod.POST,"/users").authenticated()
                 .and()
                 //.httpBasic();
                 .formLogin()
@@ -53,7 +53,7 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login")
+                .logoutSuccessUrl("/login?logout")
                 .and()
                 .exceptionHandling()
                 .accessDeniedPage("/access-denied");

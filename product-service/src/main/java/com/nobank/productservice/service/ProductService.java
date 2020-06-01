@@ -1,24 +1,31 @@
 package com.nobank.productservice.service;
 
-import com.nobank.productservice.model.Product;
-import com.nobank.productservice.repository.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.nobank.productservice.model.Bill;
+import com.nobank.productservice.model.Product;
+import com.nobank.productservice.repository.ProductRepository;
 
 @Service
 public class ProductService {
 
     @Autowired
     private ProductRepository productRepository;
+    
+    @Autowired
+    private BillServices billService;
 
-    public Product createProduct(Product product){
+    public void createProduct(Product product, Bill bill){
 
-        return productRepository.save(product);
+        Product prod = productRepository.save(product);
+        bill.setProductId(prod.getId());
+        billService.postBill(bill);
     }
 
     public List<Product> getProducts(){
@@ -59,5 +66,10 @@ public class ProductService {
         map.put("product", updatedProduct);
 
         return map;
+    }
+    
+    public void deleteAll() {
+    	productRepository.deleteAll();
+    	billService.deleteAll();
     }
 }
