@@ -1,16 +1,15 @@
 package com.nobank.orderservice.service;
 
-import com.nobank.orderservice.model.Bill;
-import com.nobank.orderservice.model.Order;
-import com.nobank.orderservice.model.Product;
-import com.nobank.orderservice.repository.OrderRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.nobank.orderservice.model.Order;
+import com.nobank.orderservice.repository.OrderRepository;
 
 @Service
 public class OrderServices {
@@ -18,16 +17,12 @@ public class OrderServices {
     @Autowired
     private OrderRepository orderRepository;
 
-    public Order placeOrder(Product product,String userId, int quantity, Bill bill){
+    public Order placeOrder(){
         Order order = new Order();
-        order.setProduct(product);
-        order.setUserId(userId);
-        order.setBill(bill);
-        order.setQuantity(quantity);
+        
 
         orderRepository.save(order);
 
-        // TODO: update product details in product
 
 
         return order;

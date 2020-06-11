@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.nobank.productservice.model.Bill;
+import com.nobank.productservice.model.Holder;
 import com.nobank.productservice.model.Product;
 import com.nobank.productservice.repository.ProductRepository;
 
@@ -54,11 +55,13 @@ public class ProductService {
         return map;
     }
 
-    public Map<String, Object> updateProduct(String productId, int quantity){
+    public Map<String, Object> updateProduct(String productId, int quantity, Holder holder){
         Optional<Product> optionalProduct = productRepository.findById(productId);
         Product updatedProduct = optionalProduct.get();
         updatedProduct.setAvailable(updatedProduct.getAvailable()-quantity);
-
+        List<Holder> holders = updatedProduct.getHolders();
+        holders.add(holder);
+        updatedProduct.setHolders(holders);
         productRepository.save(updatedProduct);
 
         Map<String , Object> map = new HashMap<>();

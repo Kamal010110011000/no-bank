@@ -1,6 +1,7 @@
 package com.nobank.userservice.service;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,6 +19,14 @@ public class UserServices {
     private UserRepository userRepository;
 
     public User createUser(User user){
+    	ArrayList<String> role = new ArrayList<String>();
+    	role.add("user");
+    	user.setHistory(new LinkedList<History>());
+    	user.setForSale(new ArrayList<String>());
+    	user.setProducts(new LinkedList<String>());
+    	user.setRoles(role);
+    	user.setPermissions(new ArrayList<>());
+    	
         return userRepository.save(user);
     }
 
@@ -37,7 +46,10 @@ public class UserServices {
         userdata.setAadhar_no(user.getAadhar_no());
         userdata.setEmail(user.getEmail());
         userdata.setPhone(user.getPhone());
-
+        userdata.setProducts(user.getProducts());
+        userdata.setForSale(user.getForSale());
+        userdata.setHistory(user.getHistory());
+        userdata.setAccount(user.getAccount());
         userRepository.save(userdata);
 
         return userdata;

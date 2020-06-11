@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,13 +13,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
 import com.nobank.productservice.model.Bill;
 import com.nobank.productservice.model.Data;
 import com.nobank.productservice.model.Holder;
 import com.nobank.productservice.model.Product;
-import com.nobank.productservice.service.BillServices;
+import com.nobank.productservice.model.Quantity;
 import com.nobank.productservice.service.ProductService;
 
 @RestController
@@ -69,12 +66,12 @@ public class ProductController {
     }
 
     @PutMapping(value = "/{productId}")
-    public Map<String,Object> updateProduct(@PathVariable String productId, @RequestBody int quantity, @RequestHeader Map<String , String> header){
+    public boolean updateProduct(@PathVariable String productId, @RequestBody Quantity quantity){
         //TODO: check if product exists or not
+    	Holder holder = new Holder(quantity.getUser1Id(), quantity.getQuantity());
+        Map<String, Object> map = productService.updateProduct(productId, quantity.getQuantity(), holder);
 
-        Map<String, Object> map = productService.updateProduct(productId, quantity);
-
-        return map;
+        return true;
     }
 
     @DeleteMapping(value = "/{productId}")
@@ -85,7 +82,7 @@ public class ProductController {
     }
 
     @GetMapping(value = "/{productId}/from/{holder}/quantity/{quantity}")
-    public Product getProduct(@PathVariable String productId, @PathVariable String holder, @PathVariable int quantity,  @RequestHeader Map<String , String> header){
+    public Product getProduct(@PathVariable String productId, @PathVariable String holder, @PathVariable int quantity){
         Product product = productService.getProduct(productId);
         List<Holder> holder1 = product.getHolders();
         Holder holder2=new Holder();

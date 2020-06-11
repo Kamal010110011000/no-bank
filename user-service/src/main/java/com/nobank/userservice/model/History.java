@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 public class History {
 
     public enum TransferType{
-        Debit, Credit
+        Debit, Credit, Invest
     }
 
     private LocalDateTime date;

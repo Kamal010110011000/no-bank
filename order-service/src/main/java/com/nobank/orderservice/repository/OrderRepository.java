@@ -1,10 +1,11 @@
 package com.nobank.orderservice.repository;
 
-import com.nobank.orderservice.model.Order;
+import java.util.List;
+
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import java.util.Collection;
+import com.nobank.orderservice.model.Order;
 
 public interface OrderRepository extends MongoRepository<Order, String> {
-    Collection<Order> findByUserId(String userId);
+    List<Order> findByUserId(String userId);
 }

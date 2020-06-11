@@ -13,6 +13,7 @@ import org.springframework.web.client.RestTemplate;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.nobank.userservice.model.Bill;
 import com.nobank.userservice.model.Product;
+import com.nobank.userservice.model.Quantity;
 
 @Service
 public class ProductServices {
@@ -53,9 +54,16 @@ public class ProductServices {
 
         return null;
     }
-    public Product updateProduct(String productId, Product Product){
-
-        return null;
+    
+    public void updateProduct(String productId, String userId, Quantity quantity){
+    	
+    	Map<String, String> pathVar = new HashMap<>();
+    	pathVar.put("productId", productId);
+    	pathVar.put("userId", userId);
+    	
+    	new RestTemplate()
+    			.put(localURL+"products/{productId}",quantity,pathVar);
+    	
     }
 
     public Product deleteProduct(String productId){
@@ -70,5 +78,11 @@ public class ProductServices {
                 .getForEntity("http://localhost:8500/fee/product/{productId}", Bill[].class, pathVarmap);
 
             return Arrays.asList(responseEntity.getBody());
+    }
+    
+    public Bill postBill(Bill bill) {
+    	ResponseEntity<Bill> entity = new RestTemplate()
+    		.postForEntity("", bill, Bill.class);
+    	return entity.getBody();
     }
 }

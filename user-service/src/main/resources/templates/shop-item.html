@@ -58,15 +58,19 @@
 	                    </div>
 	                    
 	                      <div class="number">
-	                      <form th:action="buy/">
+	                      <form th:action="@{buy}" method="post">
 	                      	<p class="card-title">Quantity</p>
 	                     
 	                      
-	                      	<input type="hidden" th:value="${bill.id}">
+	                      	<input type="hidden" th:value="${bill.userId}" name="userId">
+	                      	<input type="hidden" th:value="${product.id}" name="productId">
 	                      	<input type="text" name="quantity">
 	                      	<button type="submit" class="btn btn-primary"> Buy</button>
 	                      
 	                    </form>
+	                    <div>
+	                    	<h5 th:text="${success}"></h5>
+	                    </div>
 	                    </div>
 	                  </div>
 	                </div>

@@ -26,6 +26,7 @@ public class User {
 
     private String imageUrl;
 
+    private Card card;
     
     private long phone;
 
@@ -179,8 +180,22 @@ public class User {
     public void setPermissions(List<String> permissions) {
         this.permissions = permissions;
     }
+    
+    
 
-    @Override
+    public Card getCard() {
+		return card;
+	}
+
+
+
+	public void setCard(Card card) {
+		this.card = card;
+	}
+
+
+
+	@Override
     public String toString() {
         return "User{" +
                 "id='" + id + '\'' +

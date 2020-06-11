@@ -1,10 +1,33 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
+<head th:insert="fragments/dashboard-fragments :: link">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  
+  <title th:title="${MODE}">
+  </title>
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+</head>
+
+<body class="">
+  <div class="wrapper ">
+  	<div th:replace="fragments/elements :: sidebar (name= ${name} , cls = ${MODE})">
+  	</div>
+    <div class="main-panel" style="height: 100vh;">
+      <!-- Navbar -->
+      <div th:replace="fragments/elements :: navigation (name = ${name})"></div>
+      <!-- End Navbar -->
+        <div class="content">
+        	<div th:each="product : ${products}">
+        		<h6 th:text="${product.name}"></h6>
+        	</div>
+      </div>
+    <!--  Footer-->
+      <div th:replace="fragments/elements :: footer"></div>
+    </div>
+  </div>
+  <div th:replace="fragments/dashboard-fragments :: script"></div>
 </body>
+
 </html>

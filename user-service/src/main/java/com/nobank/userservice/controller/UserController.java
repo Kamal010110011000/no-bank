@@ -12,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.nobank.userservice.model.Account;
@@ -70,6 +69,22 @@ public class UserController {
     	userServices.createUser(user);
     	model.addAttribute("success_message", "Account Created Successfully!");
     	return "register";
+    }
+    
+    @GetMapping("/my-investments")
+    public String myInvestments(Model model, Principal principal) {
+    	User user = userServices.getUserByEmail(principal.getName());
+    	Map<String, Object> map = new HashMap<>();
+    	List<Product> products = new ArrayList<>();
+    	for(String s: user.getProducts()) {
+    		products.add(productServices.getProduct(s));
+    	}
+    	map.put("name", user.getName());
+    	map.put("products", products);
+    	map.put("MODE", "my-investment"); 
+    	model.addAllAttributes(map);
+    	return "my-products";
+    	
     }
     
     

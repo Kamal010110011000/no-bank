@@ -9,6 +9,8 @@ public class Account {
     private long acNo;
 
     private double balance;
+    
+    private String ifsc;
 
     private Type type;
 
@@ -18,6 +20,7 @@ public class Account {
         this.acNo = System.currentTimeMillis();
         this.type = type;
         this.balance = balance;
+        this.ifsc = "";
     }
 
     public long getAcNo() {
@@ -43,6 +46,14 @@ public class Account {
     public void setBalance(double balance) {
         this.balance = balance;
     }
+
+	public String getIfsc() {
+		return ifsc;
+	}
+
+	public void setIfsc(String ifsc) {
+		this.ifsc = ifsc;
+	}
 
 	@Override
 	public String toString() {
