@@ -18,11 +18,43 @@
       <!-- Navbar -->
       <div th:replace="fragments/elements :: navigation (name = ${name})"></div>
       <!-- End Navbar -->
-        <div class="content">
-        	<div th:each="product : ${products}">
-        		<h6 th:text="${product.name}"></h6>
-        	</div>
-      </div>
+         <div class="content">
+	        <div class="row" >
+	        
+	         	<div class="col-lg-12 col-md-12" th:if="${products.size() == 0}">
+            		<div class="card card-user">
+              			<div class="card-header">
+                			<h3 class="card-title">You have not done any investments yet</h3>
+              			</div>
+                <div class="card-body">
+                <div class="col-lg-12 col-md-12">
+                	<p></p>
+                </div>
+              </div>
+            </div>
+          </div>
+           
+	          <div class="col-lg-6 col-md-12 col-sm-12" th:each=" product : ${products}">
+	            <div class="card card-stats">
+	              <div class="card-body ">
+	                <div class="row">
+	                  <div class="col-5 col-md-4">
+	                    <div class="icon-big text-center icon-warning">
+	                      <img src="https://www.searchpng.com/wp-content/uploads/2019/03/Swiggy-PNG-Logo-715x715.png" alt="">
+	                    </div>
+	                  </div>
+	                  <div class="col-7 col-md-8">
+	                    <div class="numbers">
+	                      <p class="card-title" th:text="${product.name}"></p>
+	                      <p class="card-category" th:text="${product.discription}"><p>
+	                      <p class="card-category"><span  th:text="${product.quantity}"></span> shares</p>
+	                    </div>
+	                  </div>
+	                </div>
+	              </div>
+	            </div>
+	          </div>
+	        </div> 
     <!--  Footer-->
       <div th:replace="fragments/elements :: footer"></div>
     </div>

@@ -6,7 +6,8 @@ import java.time.LocalDateTime;
 public class History {
 
     public enum TransferType{
-        Debit, Credit, Invest
+        Debit, Credit, Invest, MobileRecharge, DthRecharge, ElectricityBill, CraditCardBill, LICPremium,
+		LandlineBill, Donated, WaterBill, BroadBandBill, PipedGasBill, InsurencePremium
     }
 
     private LocalDateTime date;

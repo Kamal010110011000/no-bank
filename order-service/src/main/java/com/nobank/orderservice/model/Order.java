@@ -8,24 +8,24 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document
 public class Order {
 	
-	public enum Type{
+	public enum TransferType{
 		MobileRecharge, DthRecharge, ElectricityBill, CraditCardBill, LICPremium,
 		LandlineBill, Donated, WaterBill, BroadBandBill, PipedGasBill, InsurencePremium 
 	}
 
     @Id
     private String id;
-    private String no;
-    private Type  type;
-    private int amount;
+    private String otherUser;
+    private TransferType  type;
+    private int funds;
     private LocalDateTime date;
     
     public Order() {}
     
-	public Order(String no, Type type, int amount, LocalDateTime date) {
-		this.no = no;
+	public Order(String no, TransferType type, int amount, LocalDateTime date) {
+		this.otherUser = no;
 		this.type = type;
-		this.amount = amount;
+		this.funds = amount;
 		this.date = date;
 	}
 	
@@ -40,23 +40,23 @@ public class Order {
 	}
 
 
-	public String getNo() {
-		return no;
+	public String getOtherUser() {
+		return otherUser;
 	}
-	public void setNo(String no) {
-		this.no = no;
+	public void setOtherUser(String no) {
+		this.otherUser = no;
 	}
-	public Type getType() {
+	public TransferType getType() {
 		return type;
 	}
-	public void setType(Type type) {
+	public void setType(TransferType type) {
 		this.type = type;
 	}
-	public int getAmount() {
-		return amount;
+	public int getFunds() {
+		return funds;
 	}
-	public void setAmount(int amount) {
-		this.amount = amount;
+	public void setFunds(int amount) {
+		this.funds = amount;
 	}
 
 	public LocalDateTime getDate() {

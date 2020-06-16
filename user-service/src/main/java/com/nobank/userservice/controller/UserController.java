@@ -75,10 +75,8 @@ public class UserController {
     public String myInvestments(Model model, Principal principal) {
     	User user = userServices.getUserByEmail(principal.getName());
     	Map<String, Object> map = new HashMap<>();
-    	List<Product> products = new ArrayList<>();
-    	for(String s: user.getProducts()) {
-    		products.add(productServices.getProduct(s));
-    	}
+    	List<Product> products = user.getProducts();
+    	
     	map.put("name", user.getName());
     	map.put("products", products);
     	map.put("MODE", "my-investment"); 

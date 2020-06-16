@@ -9,20 +9,20 @@ public class Product {
     private String imageUrl;
 
     private String discription;
+    
+    private int quantity;
 
 
     public Product(){}
 
 
-	public Product(String id, String name, String imageUrl, String discription) {
+	public Product(String id, String name, String imageUrl, String discription, int quantity) {
 		this.id = id;
 		this.name = name;
 		this.imageUrl = imageUrl;
 		this.discription = discription;
+		this.setQuantity(quantity);
 	}
-
-
-	
 
 
 	public String getId() {
@@ -70,6 +70,16 @@ public class Product {
 		return "Product [id=" + id + ", name=" + name + ", imageUrl=" + imageUrl + ", discription=" + discription + "]";
 	}
 
-    
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	
     
 }

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.nobank.userservice.model.History;
+import com.nobank.userservice.model.Product;
 import com.nobank.userservice.model.User;
 import com.nobank.userservice.repository.UserRepository;
 
@@ -23,7 +24,7 @@ public class UserServices {
     	role.add("user");
     	user.setHistory(new LinkedList<History>());
     	user.setForSale(new ArrayList<String>());
-    	user.setProducts(new LinkedList<String>());
+    	user.setProducts(new LinkedList<Product>());
     	user.setRoles(role);
     	user.setPermissions(new ArrayList<>());
     	

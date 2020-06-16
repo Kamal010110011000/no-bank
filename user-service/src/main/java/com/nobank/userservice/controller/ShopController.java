@@ -53,7 +53,7 @@ public class ShopController {
     
     
     @PostMapping("/shop/buy")
-    public String buyProd(@ModelAttribute("productId") String productId, 
+    public String buyProd(@ModelAttribute("productId") String productId, @ModelAttribute("market_value") String market_value, 
     		@ModelAttribute("userId") String userId, @ModelAttribute("quantity") int quantity,
     		Model model, Principal principal) {
     	String username = principal.getName();
@@ -72,20 +72,18 @@ public class ShopController {
     	map.put("success", "order placed successfully");
     	
     	try {
-    		List<String> products = user.getProducts();
-    		if(!products.contains(productId)) {
-    			products.add(productId);
+    		List<Product> products = user.getProducts();
+    		if(!products.contains(product)) {
+    			product.setQuantity(quantity);
+    			products.add(product);
     			user.setProducts(products);
     		}
     		productServices.updateProduct(productId, userId, q);
-    		List<String> prods = user.getProducts();
-    		prods.add(productId);
-    		user.setProducts(prods);
     		LinkedList<History> history = user.getHistory();
-    		history.addFirst(new History(LocalDateTime.now(), 5000, product.getName(), TransferType.Invest));
+    		history.addFirst(new History(LocalDateTime.now(), Double.parseDouble(market_value)*quantity, product.getName(), TransferType.Invest));
     		user.setHistory(history);
     		Account account = user.getAccount();
-    		double balance = account.getBalance()-5000;
+    		double balance = account.getBalance()-Double.parseDouble(market_value)*quantity;
     		account.setBalance(balance);
     		user.setAccount(account);
     		userServices.updateUser(username, user);
@@ -115,7 +113,7 @@ public class ShopController {
     	map.put("bills", bills);
     	map.put("size", bills.size());
     	model.addAllAttributes(map);
-
+    	
         return "shop-item";
     }
     

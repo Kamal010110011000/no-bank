@@ -16,7 +16,7 @@
         <div class="content">
         	<div th:replace="fragments/user :: user-details (user = ${user})"></div>
         	
-        	<div class="col-md-12">
+        	<div class="col-md-12" th:if="${submode == 'transfer'}">
             <div class="card card-user">
               <div class="card-header">
                 <h5 class="card-title">Transfer Money</h5>
@@ -56,6 +56,482 @@
                   <div class="row">
                     <div class="update ml-auto mr-auto">
                       <button type="submit" class="btn btn-primary btn-round"><span>Send</span></button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-12" th:if="${submode == 'mobile'}">
+            <div class="card card-user">
+              <div class="card-header">
+                <h5 class="card-title">Mobile Recharge</h5>
+              </div>
+                <div class="card-body">
+                <form th:action="@{/mobile-recharge}" method="post">
+                  <div class="row">
+                    <div class="col-md-6 pr-1">
+                      <div class="form-group">
+                        <label id="crad_title">Mobile No</label>
+                        <input type="text" class="form-control" id="crad_value" placeholder="eg: 9304023234" name="mob">
+                      </div>
+                    </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-md-6 pr-1">
+                      <div class="form-group">
+                        <label>Amount</label>
+                        <input type="number" class="form-control" placeholder="Amount" name="amount">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="update ml-auto mr-auto">
+                      <p th:text="${msg}"></p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="update ml-auto mr-auto">
+                      <button type="submit" class="btn btn-primary btn-round"><span>Recharge</span></button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-12" th:if="${submode == 'dth'}">
+            <div class="card card-user">
+              <div class="card-header">
+                <h5 class="card-title">DTH Recharge</h5>
+              </div>
+                <div class="card-body">
+                <form th:action="@{/dth-recharge}" method="post">
+                  <div class="row">
+                    <div class="col-md-6 pr-1">
+                      <div class="form-group">
+                        <label id="crad_title">Select Provider</label>
+                        <select  class="form-control" name="provider">
+                        	<option>Airtel Digital Tv</option>
+                        	<option>Dish Tv</option>
+                        	<option>Reliance Digital Tv</option>
+                        	<option>Tata Sky</option>
+                        	<option>D2H</option>
+                        </select>
+                      </div>
+                    </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-md-6 pr-1">
+                      <div class="form-group">
+                        <label>Customer Id</label>
+                        <input type="number" class="form-control" placeholder="customer id" name="customerid">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 pr-1">
+                      <div class="form-group">
+                        <label>Amount</label>
+                        <input type="number" class="form-control" placeholder="Amount" name="amount">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="update ml-auto mr-auto">
+                      <p th:text="${msg}"></p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="update ml-auto mr-auto">
+                      <button type="submit" class="btn btn-primary btn-round"><span>Recharge</span></button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-12" th:if="${submode == 'electricity'}">
+            <div class="card card-user">
+              <div class="card-header">
+                <h5 class="card-title">Electricity Bill</h5>
+              </div>
+                <div class="card-body">
+                <form th:action="@{/electricity-bill}" method="post">
+                  <div class="row">
+                    <div class="col-md-6 pr-1">
+                      <div class="form-group">
+                        <label id="crad_title">Select Provider</label>
+                        <select  class="form-control" name="provider">
+                        	<option>Uttarakhand Power Corporation limited</option>
+                        	<option>Adani Electricity Mumbai Limited</option>
+                        	<option>BESCOM Bangalore</option>
+                        	<option>BEST Mumbai</option>
+                        	<option>BSES Yamuna Delhi</option>
+                        	<option>NPCL Noida</option>
+                        	<option>CESC Kolkata</option>
+                        </select>
+                      </div>
+                    </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-md-6 pr-1">
+                      <div class="form-group">
+                        <label>Customer Id</label>
+                        <input type="number" class="form-control" placeholder="customer id" name="customerid">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="update ml-auto mr-auto">
+                      <p th:text="${msg}"></p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="update ml-auto mr-auto">
+                      <button type="submit" class="btn btn-primary btn-round"><span>Pay Bill</span></button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-12" th:if="${submode == 'craditcard'}">
+            <div class="card card-user">
+              <div class="card-header">
+                <h5 class="card-title">Cradit Card Bill</h5>
+              </div>
+                <div class="card-body">
+                <form th:action="@{/craditcard-bill}" method="post">
+                  <div class="row">
+                    <div class="col-md-6 pr-1">
+                      <div class="form-group">
+                        <label id="crad_title">Select Provider</label>
+                        <select  class="form-control" name="provider">
+                        	<option>American Express</option>
+                        	<option>DinesClub</option>
+                        	<option>MasterCard</option>
+                        	<option>RuPay</option>
+                        	<option>VISA Inc</option>
+                        </select>
+                      </div>
+                    </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-md-6 pr-1">
+                      <div class="form-group">
+                        <label>Cradit Card No</label>
+                        <input type="number" class="form-control" placeholder="card no" name="cardno">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="update ml-auto mr-auto">
+                      <p th:text="${msg}"></p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="update ml-auto mr-auto">
+                      <button type="submit" class="btn btn-primary btn-round"><span>Pay Bill</span></button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-12" th:if="${submode == 'lic'}">
+            <div class="card card-user">
+              <div class="card-header">
+                <h5 class="card-title">LIC Premium</h5>
+              </div>
+                <div class="card-body">
+                <form th:action="@{/lic-premium}" method="post">
+                    <div class="row">
+                    <div class="col-md-6 pr-1">
+                      <div class="form-group">
+                        <label>Policy No</label>
+                        <input type="number" class="form-control" placeholder="policy no" name="policyno">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="update ml-auto mr-auto">
+                      <p th:text="${msg}"></p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="update ml-auto mr-auto">
+                      <button type="submit" class="btn btn-primary btn-round"><span>Pay Bill</span></button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-12" th:if="${submode == 'landline'}">
+            <div class="card card-user">
+              <div class="card-header">
+                <h5 class="card-title">LandLine Bill</h5>
+              </div>
+                <div class="card-body">
+                <form th:action="@{/landline}" method="post">
+                  <div class="row">
+                    <div class="col-md-6 pr-1">
+                      <div class="form-group">
+                        <label id="crad_title">Select Provider</label>
+                        <select  class="form-control" name="provider">
+                        	<option>Airtel</option>
+                        	<option>BSNL Landline-Corporate</option>
+                        	<option>Tata DoCoMo GSM</option>
+                        	<option>MTNL</option>
+                        	<option>Reliance</option>
+                        </select>
+                      </div>
+                    </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-md-6 pr-1">
+                      <div class="form-group">
+                        <label>Telephone No</label>
+                        <input type="number" class="form-control" placeholder="Telephone no" name="telno">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="update ml-auto mr-auto">
+                      <p th:text="${msg}"></p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="update ml-auto mr-auto">
+                      <button type="submit" class="btn btn-primary btn-round"><span>Pay Bill</span></button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-12" th:if="${submode == 'donate'}">
+            <div class="card card-user">
+              <div class="card-header">
+                <h5 class="card-title">Donate</h5>
+              </div>
+                <div class="card-body">
+                <form th:action="@{/donation}" method="post">
+                  <div class="row">
+                    <div class="col-md-6 pr-1">
+                      <div class="form-group">
+                        <label id="crad_title">Select NGO or Cause</label>
+                        <select  class="form-control" name="cause">
+                        	<option>Support COVID-19 Hit </option>
+                        	<option>Action Aid</option>
+                        	<option>CRY</option>
+                        	<option>Helpage India</option>
+                        	<option>Smile Foundation</option>
+                        	<option>WWF india</option>
+                        	<option>Pratham Education</option>
+                        </select>
+                      </div>
+                    </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-md-6 pr-1">
+                      <div class="form-group">
+                        <label>Amount</label>
+                        <input type="number" class="form-control" placeholder="amount" name="amount">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="update ml-auto mr-auto">
+                      <p th:text="${msg}"></p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="update ml-auto mr-auto">
+                      <button type="submit" class="btn btn-primary btn-round"><span>Donate</span></button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-12" th:if="${submode == 'waterbill'}">
+            <div class="card card-user">
+              <div class="card-header">
+                <h5 class="card-title">Water Bill</h5>
+              </div>
+                <div class="card-body">
+                <form th:action="@{/water-bill}" method="post">
+                  <div class="row">
+                    <div class="col-md-6 pr-1">
+                      <div class="form-group">
+                        <label id="crad_title">Select Provider</label>
+                        <select  class="form-control" name="provider">
+                        	<option>Uttarakhand Jal Sansthan</option>
+                        	<option>Delhi Jal Board</option>
+                        	<option>Delhi Development Aunthority(DDA)-Water</option>
+                        	<option>KWA</option>
+                        	<option>UIT Bhiwadi</option>
+                        	<option>Ujjain Nagar Nigam-PHED</option>
+                        	<option>Silvassa Municipal Council</option>
+                        </select>
+                      </div>
+                    </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-md-6 pr-1">
+                      <div class="form-group">
+                        <label>Customer Id</label>
+                        <input type="number" class="form-control" placeholder="customer id" name="customerid">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="update ml-auto mr-auto">
+                      <p th:text="${msg}"></p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="update ml-auto mr-auto">
+                      <button type="submit" class="btn btn-primary btn-round"><span>Pay Bill</span></button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-12" th:if="${submode == 'broadband'}">
+            <div class="card card-user">
+              <div class="card-header">
+                <h5 class="card-title">BroadBand Bill</h5>
+              </div>
+                <div class="card-body">
+                <form th:action="@{/dth-recharge}" method="post">
+                  <div class="row">
+                    <div class="col-md-6 pr-1">
+                      <div class="form-group">
+                        <label id="crad_title">Select Provider</label>
+                        <select  class="form-control" name="provider">
+                        	<option>Airtel</option>
+                        	<option>ATC BroadBand</option>
+                        	<option>BSNL</option>
+                        	<option>ION</option>
+                        	<option>Reliance</option>
+                        	<option>Spectra</option>
+                        	<option>TTN BroadBand</option>
+                        </select>
+                      </div>
+                    </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-md-6 pr-1">
+                      <div class="form-group">
+                        <label>Customer Id</label>
+                        <input type="number" class="form-control" placeholder="customer id" name="customerid">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="update ml-auto mr-auto">
+                      <p th:text="${msg}"></p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="update ml-auto mr-auto">
+                      <button type="submit" class="btn btn-primary btn-round"><span>Pay Bill</span></button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-12" th:if="${submode == 'pipedgas'}">
+            <div class="card card-user">
+              <div class="card-header">
+                <h5 class="card-title">Piped Gas Bill</h5>
+              </div>
+                <div class="card-body">
+                <form th:action="@{/dth-recharge}" method="post">
+                  <div class="row">
+                    <div class="col-md-6 pr-1">
+                      <div class="form-group">
+                        <label id="crad_title">Select Biller</label>
+                        <select  class="form-control" name="provider">
+                        	<option>Adani Gas</option>
+                        	<option>Avantika Gas Limited</option>
+                        	<option>Centeral UP Gas</option>
+                        	<option>Gujrat Gas</option>
+                        	<option>Indraprasth Gas</option>
+                        	<option>Mahanagar Gas</option>
+                        	<option>Vododara Gas Limited</option>
+                        </select>
+                      </div>
+                    </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-md-6 pr-1">
+                      <div class="form-group">
+                        <label>ARN no</label>
+                        <input type="number" class="form-control" placeholder="ARN no" name="arnno">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="update ml-auto mr-auto">
+                      <p th:text="${msg}"></p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="update ml-auto mr-auto">
+                      <button type="submit" class="btn btn-primary btn-round"><span>Pay Bill</span></button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-12" th:if="${submode == 'insurance'}">
+            <div class="card card-user">
+              <div class="card-header">
+                <h5 class="card-title">Insurance Premium</h5>
+              </div>
+                <div class="card-body">
+                <form th:action="@{/dth-recharge}" method="post">
+                  <div class="row">
+                    <div class="col-md-6 pr-1">
+                      <div class="form-group">
+                        <label id="crad_title">Provider Name</label>
+                        <input type="text" class="form-control" placeholder="Provider Name" name="procidername">
+                      </div>
+                    </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-md-6 pr-1">
+                      <div class="form-group">
+                        <label>Policy No</label>
+                        <input type="number" class="form-control" placeholder="policy no" name="policyno">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="update ml-auto mr-auto">
+                      <p th:text="${msg}"></p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="update ml-auto mr-auto">
+                      <button type="submit" class="btn btn-primary btn-round"><span>Pay Insurance</span></button>
                     </div>
                   </div>
                 </form>

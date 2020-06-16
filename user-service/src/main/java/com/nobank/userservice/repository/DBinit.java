@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.nobank.userservice.model.Account;
 import com.nobank.userservice.model.Address;
 import com.nobank.userservice.model.History;
+import com.nobank.userservice.model.Product;
 import com.nobank.userservice.model.User;
 import com.nobank.userservice.service.ProductServices;
 
@@ -30,7 +31,8 @@ public class DBinit implements CommandLineRunner {
 
         userRepository.deleteAll();
 
-        List<String> p = new LinkedList<>();
+        List<Product> p = new LinkedList<>();
+        List<String> fs = new ArrayList<>();
         LinkedList<History> h =new LinkedList<>(); 
 
         List<String> roles = new ArrayList<>();
@@ -38,7 +40,7 @@ public class DBinit implements CommandLineRunner {
         User user = new User("Kamal",
                 "kamal@gmail.com",
                 p,
-                p,
+                fs,
                 Long.parseLong("123456789098"),
                 Long.parseLong("9876567656"),
                 new Address("premnager", "Dehradun", 248001, "India"),
@@ -47,11 +49,11 @@ public class DBinit implements CommandLineRunner {
                 new Account(Account.Type.Saving, 20000.00),
                 h,
                 roles,
-                p);
+                fs);
         userRepository.save(user);
         User user1 = new User("Harsh",
                 "harsh@gmail.com",
-                p, p,
+                p, fs,
                 Long.parseLong("123450000098"),
                 Long.parseLong("9800067656"),
                 new Address("premnager","Dehradun",248001, "India"),
@@ -60,11 +62,11 @@ public class DBinit implements CommandLineRunner {
                 new Account(Account.Type.Saving, 20000.00),
                 h,
                 roles,
-                p);
+                fs);
         userRepository.save(user1);
         User user2 = new User("Akash",
                 "akash.@gmail.com",
-                p, p, Long.parseLong("123411119098"),
+                p, fs, Long.parseLong("123411119098"),
                 Long.parseLong("9876111656"),
                 new Address("premnager","Dehradun",248001, "India"),
                 "image",
@@ -72,7 +74,7 @@ public class DBinit implements CommandLineRunner {
                 new Account(Account.Type.Saving,20000.00),
                 h,
                 roles,
-                p);
+                fs);
         userRepository.save(user2);
 
         User user3 = userRepository.findByEmail("kamal@gmail.com");

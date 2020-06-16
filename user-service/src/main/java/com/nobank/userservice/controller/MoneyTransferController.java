@@ -31,6 +31,7 @@ public class MoneyTransferController {
     	Map<String, Object> map=new HashMap<>();
     	map.put("user", user);
     	map.put("msg","");
+    	map.put("submode", "transfer");
     	model.addAllAttributes(map);
     	
     	return "transfer";
@@ -62,8 +63,11 @@ public class MoneyTransferController {
 		}
 
 		map.put("user", user);
+		map.put("submode", "transfer");
 		model.addAllAttributes(map);
 		return "transfer";
 	}
+	
+	
 
 }

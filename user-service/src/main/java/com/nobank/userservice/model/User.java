@@ -38,10 +38,10 @@ public class User {
 
 
     private	List<String> forSale;
-    private List<String> products;
+    private List<Product> products;
     private LinkedList<History> history;
  
-    public User(String name, String email, List<String> products,List<String> forSale,
+    public User(String name, String email, List<Product> products,List<String> forSale,
                 long aadhar_no, long phone, Address address, String imageUrl, String password,
                 Account account, LinkedList<History> history, List<String> roles,List<String> permissions) {
         this.name = name;
@@ -157,11 +157,11 @@ public class User {
         this.roles = roles;
     }
 
-    public List<String> getProducts() {
+    public List<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(List<String> products) {
+    public void setProducts(List<Product> products) {
         this.products = products;
     }
 
