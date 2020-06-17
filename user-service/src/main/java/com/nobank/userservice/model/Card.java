@@ -1,7 +1,5 @@
 package com.nobank.userservice.model;
 
-import java.util.Date;
-
 public class Card {
 	
 	public enum cardType {
@@ -10,15 +8,15 @@ public class Card {
 	
 	public cardType type;
 	public long no;
-	public Date issuedOn;
-	public Date expireOn;
+	public String issuedOn;
+	public String expireOn;
 	public int cvv;
 	public int pin;
 	public boolean active;
 	
 	public Card() {}
 	
-	public Card(cardType type, long no, Date issuedOn, Date expireOn, int cvv, int pin) {
+	public Card(cardType type, long no, String issuedOn, String expireOn, int cvv, int pin) {
 		super();
 		this.type = type;
 		this.no = no;
@@ -43,16 +41,16 @@ public class Card {
 	public void setNo(long no) {
 		this.no = no;
 	}
-	public Date getIssuedOn() {
+	public String getIssuedOn() {
 		return issuedOn;
 	}
-	public void setIssuedOn(Date issuedOn) {
+	public void setIssuedOn(String issuedOn) {
 		this.issuedOn = issuedOn;
 	}
-	public Date getExpireOn() {
+	public String getExpireOn() {
 		return expireOn;
 	}
-	public void setExpireOn(Date expireOn) {
+	public void setExpireOn(String expireOn) {
 		this.expireOn = expireOn;
 	}
 	public int getCvv() {

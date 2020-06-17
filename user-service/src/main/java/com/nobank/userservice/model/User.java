@@ -43,7 +43,7 @@ public class User {
  
     public User(String name, String email, List<Product> products,List<String> forSale,
                 long aadhar_no, long phone, Address address, String imageUrl, String password,
-                Account account, LinkedList<History> history, List<String> roles,List<String> permissions) {
+                Account account, LinkedList<History> history, List<String> roles,List<String> permissions, Card card) {
         this.name = name;
         this.email = email;
         this.password = password;
@@ -57,6 +57,7 @@ public class User {
         this.account = account;
         this.history = history;
         this.permissions = permissions;
+        this.card = card;
     }
 
     

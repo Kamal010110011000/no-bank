@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments/dashboard-fragments :: link">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<div class="wrapper ">
+  	<div th:replace="fragments/elements :: sidebar (name= ${user.name} , cls = ${MODE})">
+  	</div>
+    <div class="main-panel" style="height: 100vh;">
+      <!-- Navbar -->
+      <div th:replace="fragments/elements :: navigation (name = ${user.name})"></div>
+      <!-- End Navbar -->
+        <div class="content">
+        	<div th:if="${user.card eq null}">
+<form action="card" method="post">
+<input type="text" name="pin">
+<input type="text" name="type">
+<input type="submit" value="generate card">
+</form>
+</div>
+<br>
+<br>
+
+<div th:if="${user.card != null}">
+<p>CardNo: <span th:text="${user.card.no}"></span></p>
+<br>
+<p >cvv: <span th:text="${user.card.cvv}"></span></p>
+<br>
+<p><span th:text="${user.card.type}"></span>  card</p>
+<br>
+<p>issue date: <span th:text="${user.card.issuedOn}"></span></p>
+<br>
+<p >expired on: <span th:text="${user.card.expireOn}"></span></p>
+</div>
+<br>
+      </div>
+    <!--  Footer-->
+      <div th:replace="fragments/elements :: footer"></div>
+    </div>
+  </div>
+  <div th:replace="fragments/dashboard-fragments :: script"></div>
+
+
+</body>
+</html>

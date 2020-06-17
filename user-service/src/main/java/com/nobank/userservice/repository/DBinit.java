@@ -49,7 +49,8 @@ public class DBinit implements CommandLineRunner {
                 new Account(Account.Type.Saving, 20000.00),
                 h,
                 roles,
-                fs);
+                fs,
+                null);
         userRepository.save(user);
         User user1 = new User("Harsh",
                 "harsh@gmail.com",
@@ -62,7 +63,7 @@ public class DBinit implements CommandLineRunner {
                 new Account(Account.Type.Saving, 20000.00),
                 h,
                 roles,
-                fs);
+                fs, null);
         userRepository.save(user1);
         User user2 = new User("Akash",
                 "akash.@gmail.com",
@@ -74,7 +75,7 @@ public class DBinit implements CommandLineRunner {
                 new Account(Account.Type.Saving,20000.00),
                 h,
                 roles,
-                fs);
+                fs, null);
         userRepository.save(user2);
 
         User user3 = userRepository.findByEmail("kamal@gmail.com");

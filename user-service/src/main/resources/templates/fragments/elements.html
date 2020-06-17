@@ -24,6 +24,12 @@
               <p>Dashboard</p>
             </a>
           </li>
+          <li th:class="${cls} eq 'card' ? 'active'">
+            <a href="/card">
+              <i class="nc-icon nc-credit-card"></i>
+              <p>Card</p>
+            </a>
+          </li>
           <li th:class="${cls} eq 'shop' ? 'active'">
             <a href="/shop">
               <i class="nc-icon nc-cart-simple"></i>
