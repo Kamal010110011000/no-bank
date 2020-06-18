@@ -17,10 +17,10 @@ public class CardServices {
 	@Autowired
 	private UserRepository userRepository;
 	
-	public Card createCard(String email, cardType type, int pin) {
+	public Card createCard(String email, int pin) {
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		String date = formatter.format(new Date());
-		Card card = new Card(type, generateNo(),date,generateExpiryDate(date),generateCVV(), pin);
+		Card card = new Card(cardType.Debit, generateNo(),date,generateExpiryDate(date),generateCVV(),pin,true);
 		
 		User user= userRepository.findByEmail(email);
 		user.setCard(card);
@@ -31,12 +31,16 @@ public class CardServices {
 	
 	public int generateCVV() {
 		int cvv = (int)(Math.random()*1000)+(int)(System.currentTimeMillis()%1000);
+		
+		if(cvv%1000<100) {
+			return generateCVV();
+		}
 		return cvv%1000;
 	}
 	
 	public long generateNo() {
 		long no = (long)(Math.random()*Long.parseLong("1000000000000"))+System.currentTimeMillis();
-		return no%Long.parseLong("10000000000000");
+		return no%Long.parseLong("1000000000000");
 	}
 	
 	public String generateExpiryDate(String date) {

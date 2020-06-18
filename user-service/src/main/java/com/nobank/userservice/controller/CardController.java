@@ -41,10 +41,10 @@ public class CardController {
 	}
 	
 	@PostMapping()
-	public String generateCard(Principal principal, Model model, @ModelAttribute("pin") String pin, @ModelAttribute("type") String type) {
+	public String generateCard(Principal principal, Model model, @ModelAttribute("pin") String pin) {
 		String email = principal.getName();
 		Map<String, Object> map = new HashMap<>();
-		Card card = cardServices.createCard(email, cardType.Debit, Integer.parseInt(pin));
+		Card card = cardServices.createCard(email, Integer.parseInt(pin));
 		map.put("user", userServices.getUserByEmail(email));
 		map.put("MODE", "card");
 		model.addAllAttributes(map);

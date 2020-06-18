@@ -16,7 +16,7 @@ public class Card {
 	
 	public Card() {}
 	
-	public Card(cardType type, long no, String issuedOn, String expireOn, int cvv, int pin) {
+	public Card(cardType type, long no, String issuedOn, String expireOn, int cvv, int pin, boolean active) {
 		super();
 		this.type = type;
 		this.no = no;
@@ -24,6 +24,7 @@ public class Card {
 		this.expireOn = expireOn;
 		this.cvv = cvv;
 		this.pin = pin;
+		this.active = active;
 	}
 
 
@@ -64,6 +65,11 @@ public class Card {
 	}
 	public void setPin(int pin) {
 		this.pin = pin;
+	}
+	
+	public String cardNo() {
+		String str = String.valueOf(this.no);
+		return str.substring(0, 4)+" "+str.substring(4, 8)+" "+str.substring(8);
 	}
 	
 	

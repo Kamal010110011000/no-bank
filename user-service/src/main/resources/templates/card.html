@@ -14,28 +14,63 @@
       <div th:replace="fragments/elements :: navigation (name = ${user.name})"></div>
       <!-- End Navbar -->
         <div class="content">
-        	<div th:if="${user.card eq null}">
-<form action="card" method="post">
-<input type="text" name="pin">
-<input type="text" name="type">
-<input type="submit" value="generate card">
-</form>
-</div>
-<br>
-<br>
+        	<div th:if="${user.card eq null}" class="d-card-content">
+        	
+        		<h3 class="">You Don't have a card.</h3>
+				<form action="card" method="post">
+					<div class="form-group">
+                        <label class="form-title">Enter Pin:</label>
+                        <input type="password" class="form-control" placeholder="XXXX" name="pin">
+                      </div>
+					<input type="submit" value="Generate Card" class="btn btn-primary">
+				</form>
+			</div>
 
-<div th:if="${user.card != null}">
-<p>CardNo: <span th:text="${user.card.no}"></span></p>
-<br>
-<p >cvv: <span th:text="${user.card.cvv}"></span></p>
-<br>
-<p><span th:text="${user.card.type}"></span>  card</p>
-<br>
-<p>issue date: <span th:text="${user.card.issuedOn}"></span></p>
-<br>
-<p >expired on: <span th:text="${user.card.expireOn}"></span></p>
+<div th:if="${user.card != null}" class="d-card-content">
+	<div class="d-card">
+        <div class="d-card__front d-card__part">
+            <img class="d-card__front-square d-card__square" src="/images/card-chip.png">
+            <img class="d-card__front-logo d-card__logo" src="https://www.fireeye.com/partners/strategic-technology-partners/visa-fireeye-cyber-watch-program/_jcr_content/content-par/grid_20_80_full/grid-20-left/image.img.png/1505254557388.png">
+            <p class="d-card_numer" th:text="${user.card.cardNo()}"></p>
+            <div class="d-card__space-75">
+                <p class="d-card__info" th:text="${user.name}">John Doe</p>
+            </div>
+            <div class="d-card__space-25">
+                <span class="d-card__label">Expires</span>
+                <p class="d-card__info" th:text="${user.card.expireOn}"></p>
+            </div>
+        </div>
+
+        <div class="d-card__back d-card__part">
+            <div class="d-card__black-line"></div>
+            <div class="d-card__back-content">
+                <div class="d-card__secret">
+                    <p class="d-card__secret--last" th:text="${user.card.cvv}"></p>
+                </div>
+                <img class="d-card__back-square d-card__square" src="https://image.ibb.co/cZeFjx/little_square.png">
+                <img class="d-card__back-logo d-card__logo" src="https://www.fireeye.com/partners/strategic-technology-partners/visa-fireeye-cyber-watch-program/_jcr_content/content-par/grid_20_80_full/grid-20-left/image.img.png/1505254557388.png">
+
+            </div>
+        </div>
+
+    </div>
+    <div class="d-card-control">
+    	<div th:if="${user.card.active eq true}">
+    		<form >
+    			<input type="hidden" name="active" th:value="${user.card.active}">
+    			<input type="submit" value="Deactivate" class="btn btn-primary">
+    		</form>
+    	</div>
+    	<div th:if="${user.card.active eq false}">
+    		<form>
+    			<input type="hidden" name="active" th:value="${user.card.active}">
+    			<input type="submit" value="Activate" class="btn btn-primary">
+    		</form>
+    	</div>
+    </div>
+    
 </div>
-<br>
+
       </div>
     <!--  Footer-->
       <div th:replace="fragments/elements :: footer"></div>
