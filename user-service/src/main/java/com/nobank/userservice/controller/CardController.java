@@ -10,10 +10,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.nobank.userservice.model.Card;
-import com.nobank.userservice.model.Card.cardType;
 import com.nobank.userservice.model.User;
 import com.nobank.userservice.service.CardServices;
 import com.nobank.userservice.service.UserServices;
@@ -50,6 +50,20 @@ public class CardController {
 		model.addAllAttributes(map);
 		return "card";
 	
+	}
+	
+	@PostMapping("/update")
+	public String updateCard(Principal principal, Model model, @ModelAttribute("active") String active, @ModelAttribute("pin") String pin) {
+		
+		String email = principal.getName();
+		Map<String, Object> map = new HashMap<>();
+		boolean act = (active.equals("true")) ? true : false;
+		String msg = cardServices.updateCard(email, act, Integer.parseInt(pin));
+		map.put("user", userServices.getUserByEmail(email));
+		map.put("MODE", "card");
+		model.addAllAttributes(map);
+		
+		return "redirect:/card?"+msg;
 	}
 
 }

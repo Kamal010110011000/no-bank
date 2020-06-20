@@ -33,7 +33,7 @@
             <img class="d-card__front-logo d-card__logo" src="https://www.fireeye.com/partners/strategic-technology-partners/visa-fireeye-cyber-watch-program/_jcr_content/content-par/grid_20_80_full/grid-20-left/image.img.png/1505254557388.png">
             <p class="d-card_numer" th:text="${user.card.cardNo()}"></p>
             <div class="d-card__space-75">
-                <p class="d-card__info" th:text="${user.name}">John Doe</p>
+                <p class="d-card__info" th:text="${user.name}"></p>
             </div>
             <div class="d-card__space-25">
                 <span class="d-card__label">Expires</span>
@@ -55,15 +55,29 @@
 
     </div>
     <div class="d-card-control">
+    	<br>
+    	 <div th:if="${param.active}" class="alert alert-success">
+           	<span> Card Activated</span>
+         </div>
+         <div th:if="${param.deactive}" class="alert alert-success">
+           	<span>Card Deactivated</span>
+         </div>
+         
+         <div th:if="${param.change}" class="alert alert-success">
+           	<span>"Pin Changed Successfully"</span>
+         </div>
+          
     	<div th:if="${user.card.active eq true}">
-    		<form >
-    			<input type="hidden" name="active" th:value="${user.card.active}">
+    		<form th:action="@{/card/update}" th:method="post">
+    			<input type="hidden" name="active" value="false">
+    			<input type="hidden" name="pin" th:value="${user.card.pin}">
     			<input type="submit" value="Deactivate" class="btn btn-primary">
     		</form>
     	</div>
     	<div th:if="${user.card.active eq false}">
-    		<form>
-    			<input type="hidden" name="active" th:value="${user.card.active}">
+    		<form th:action="@{/card/update}" th:method="post">
+    			<input type="hidden" name="active" value="true">
+    			<input type="hidden" name="pin" th:value="${user.card.pin}">
     			<input type="submit" value="Activate" class="btn btn-primary">
     		</form>
     	</div>

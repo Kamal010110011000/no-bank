@@ -14,9 +14,9 @@ public class UtilServices {
 	public boolean canPay(String user, double amount){
 		double bal = userRepo.findByEmail(user).getAccount().getBalance();
 		if(amount >= bal) {
-			return true;
+			return false;
 		}
-		return false;
+		return true;
 	}
 	
 	

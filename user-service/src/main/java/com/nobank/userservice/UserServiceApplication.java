@@ -10,8 +10,8 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 @SpringBootApplication
 @EnableCircuitBreaker
 @EnableZuulProxy
-//@EnableDiscoveryClient
-//@EnableEurekaClient
+@EnableDiscoveryClient
+@EnableEurekaClient
 public class UserServiceApplication {
 	
 	

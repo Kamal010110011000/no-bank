@@ -6,13 +6,13 @@ public class Card {
 		Debit, Credit
 	}
 	
-	public cardType type;
-	public long no;
-	public String issuedOn;
-	public String expireOn;
-	public int cvv;
-	public int pin;
-	public boolean active;
+	private cardType type;
+	private long no;
+	private String issuedOn;
+	private String expireOn;
+	private int cvv;
+	private int pin;
+	private boolean active;
 	
 	public Card() {}
 	
@@ -67,6 +67,16 @@ public class Card {
 		this.pin = pin;
 	}
 	
+	
+	
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
 	public String cardNo() {
 		String str = String.valueOf(this.no);
 		return str.substring(0, 4)+" "+str.substring(4, 8)+" "+str.substring(8);

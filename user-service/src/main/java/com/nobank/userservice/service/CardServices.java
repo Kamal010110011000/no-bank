@@ -29,6 +29,30 @@ public class CardServices {
 		return card;
 	}
 	
+	public String updateCard(String email,boolean active, int pin) {
+		User user = userRepository.findByEmail(email);
+		String msg = "";
+		Card card = user.getCard();
+		if(active & card.isActive()) {
+			card.setPin(pin);
+			msg = "change"; 
+		}
+		else {
+			if(active) {
+				msg = "active";
+			}
+			else {
+				msg = "deactive";
+			}
+			card.setActive(active);
+		}
+		
+		user.setCard(card);
+		userRepository.save(user);
+		
+		return msg;
+	}
+	
 	public int generateCVV() {
 		int cvv = (int)(Math.random()*1000)+(int)(System.currentTimeMillis()%1000);
 		

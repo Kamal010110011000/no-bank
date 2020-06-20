@@ -17,21 +17,18 @@ public class OrderServices {
     @Autowired
     private OrderRepository orderRepository;
 
-    public Order placeOrder(){
-        Order order = new Order();
-        
-
-        orderRepository.save(order);
-
-
-
-        return order;
+    public Order placeOrder(Order order){
+        return orderRepository.save(order);
     }
 
-    public List<Order> getOrders(String userId){
-        List<Order> orders = (List<Order>) orderRepository.findByUserId(userId);
+    //public List<Order> getOrders(String userId){
+        //List<Order> orders = (List<Order>) orderRepository.findByUserId(userId);
 
-        return orders;
+      //  return orders;
+    //}
+    
+    public List<Order> getOrders(){
+    	return orderRepository.findAll();
     }
 
     public Map<String, Object> deleteOrder(String orderId){

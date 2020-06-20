@@ -85,6 +85,14 @@ public class HistoryService {
 		return userMe;
 	}
 
+	
+	public void AddHistory(History history, String email) {
+		User user = userRepository.findByEmail(email);
+		LinkedList<History> hist =user.getHistory();
+		hist.addFirst(history);
+		user.setHistory(hist);
+		userRepository.save(user);
+	}
 
 
 }
